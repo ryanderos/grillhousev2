@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Grill House au feu de bois - Restaurant turc a Louviers. Grillades authentiques, cuisine genereuse et faite maison." />
+  <title>Grill House au feu de bois - Restaurant Turc Louviers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            fire: "#B91C1C", ember: "#7C2D12", charcoal: "#0F0E0D",
+            wooddark: "#292018", wood: "#78350F", gold: "#D97706",
+            goldlt: "#FCD34D", cream: "#FEF3C7", ash: "#3D3530", ashlt: "#5C524B"
+          },
+          fontFamily: { title: ["Merriweather","serif"], body: ["Inter","sans-serif"] }
+        }
+      }
+    }
+  </script>
+  <style>
+    html{scroll-behavior:smooth}
+    body{font-family:"Inter",sans-serif;background:#0F0E0D}
+    h1,h2,h3,h4,h5{font-family:"Merriweather",serif}
+    .nav-link{position:relative;padding-bottom:4px;transition:color 0.2s}
+    .nav-link::after{content:"";position:absolute;bottom:0;left:0;width:0;height:2px;background:#D97706;transition:width 0.25s ease}
+    .nav-link:hover::after,.nav-link.active::after{width:100%}
+    .nav-link.active{color:#D97706}
+    .page{display:none}
+    .page.active{display:block}
+    .hero-bg{background:linear-gradient(to bottom right,rgba(15,14,13,0.80) 30%,rgba(124,45,18,0.50) 100%),url("https://images.unsplash.com/photo-1544025162-d76694265947?w=1800&auto=format&fit=crop") center/cover no-repeat}
+    .card-hover{transition:transform 0.2s ease,box-shadow 0.2s ease}
+    .card-hover:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(185,28,28,0.20)}
+    .menu-tab-btn{transition:all 0.2s;border-bottom:2px solid transparent}
+    .menu-tab-btn.active{color:#D97706;border-color:#D97706}
+    .menu-cat{display:none}
+    .menu-cat.active{display:grid}
+    .badge-feu{display:inline-flex;align-items:center;gap:4px;background:rgba(185,28,28,0.15);border:1px solid rgba(185,28,28,0.4);color:#FCD34D;font-size:0.65rem;font-weight:600;padding:2px 8px;border-radius:999px;letter-spacing:0.08em;text-transform:uppercase}
+    .gal-img{overflow:hidden;border-radius:12px}
+    .gal-img img{transition:transform 0.4s ease;width:100%;height:100%;object-fit:cover}
+    .gal-img:hover img{transform:scale(1.06)}
+    .review-border{border-left:3px solid #D97706}
+    #scrollTop{position:fixed;bottom:24px;right:24px;z-index:999;width:44px;height:44px;background:#B91C1C;color:white;border-radius:50%;display:none;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 20px rgba(185,28,28,0.5);transition:background 0.2s;font-size:18px;font-weight:bold}
+    #scrollTop:hover{background:#991B1B}
+    #scrollTop.show{display:flex}
+    @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .ticker-inner{animation:ticker 22s linear infinite;white-space:nowrap;display:inline-block}
+  </style>
+</head>
+<body class="text-cream">
+
+<div class="bg-fire overflow-hidden py-2">
+  <div class="ticker-inner text-white text-xs font-semibold tracking-wide">
+    &nbsp;&#128293;&nbsp; Grillades au feu de bois &nbsp;&middot;&nbsp; &#129385; Fait maison chaque jour &nbsp;&middot;&nbsp; &#128222; 07 45 23 15 00 &nbsp;&middot;&nbsp; &#128717; Sur place et a emporter &nbsp;&middot;&nbsp; &#11088; Excellent rapport qualite-prix &nbsp;&middot;&nbsp; &#128293;&nbsp; Grillades au feu de bois &nbsp;&middot;&nbsp; &#129385; Fait maison chaque jour &nbsp;&middot;&nbsp; &#128222; 07 45 23 15 00 &nbsp;&middot;&nbsp; &#128717; Sur place et a emporter &nbsp;&middot;&nbsp; &#11088; Excellent rapport qualite-prix &nbsp;&middot;&nbsp;
+  </div>
+</div>
+
+<header class="sticky top-0 z-50 bg-wooddark/95 backdrop-blur-sm shadow-xl shadow-black/40">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <button onclick="showPage('accueil')" class="flex items-center gap-3 focus:outline-none">
+        <div class="w-10 h-10 bg-fire rounded-full flex items-center justify-center text-xl shadow-lg shadow-fire/30">&#128293;</div>
+        <div class="text-left leading-tight">
+          <span class="font-title font-black text-white text-sm md:text-base block tracking-tight">GRILL HOUSE</span>
+          <span class="text-gold text-[10px] tracking-[0.2em] uppercase font-medium">au feu de bois &middot; Louviers</span>
+        </div>
+      </button>
+      <nav class="hidden md:flex items-center gap-1">
+        <button onclick="showPage('accueil')"  id="nav-accueil"  class="nav-link active text-cream text-sm font-medium px-4 py-2">Accueil</button>
+        <button onclick="showPage('concept')"  id="nav-concept"  class="nav-link text-cream/80 text-sm font-medium px-4 py-2">Le Concept</button>
+        <button onclick="showPage('carte')"    id="nav-carte"    class="nav-link text-cream/80 text-sm font-medium px-4 py-2">Notre Carte</button>
+        <button onclick="showPage('galerie')"  id="nav-galerie"  class="nav-link text-cream/80 text-sm font-medium px-4 py-2">Galerie</button>
+        <button onclick="showPage('avis')"     id="nav-avis"     class="nav-link text-cream/80 text-sm font-medium px-4 py-2">Avis</button>
+        <button onclick="showPage('contact')"  id="nav-contact"  class="nav-link text-cream/80 text-sm font-medium px-4 py-2">Contact</button>
+        <a href="tel:0745231500" class="ml-4 bg-fire hover:bg-red-700 text-white text-sm font-bold px-5 py-2 rounded-full transition-all shadow-md shadow-fire/30">&#128222; 07 45 23 15 00</a>
+      </nav>
+      <button id="mbBtn" class="md:hidden text-cream p-2 focus:outline-none" aria-label="Menu">
+        <div class="w-6 h-0.5 bg-cream mb-1.5"></div>
+        <div class="w-6 h-0.5 bg-cream mb-1.5"></div>
+        <div class="w-6 h-0.5 bg-cream"></div>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden bg-wooddark border-t border-ash/40">
+    <div class="px-4 py-4 flex flex-col gap-2">
+      <button onclick="showPage('accueil');closeMob()" class="text-left text-cream/90 py-2 text-sm font-medium border-b border-ash/30">&#127968; Accueil</button>
+      <button onclick="showPage('concept');closeMob()" class="text-left text-cream/90 py-2 text-sm font-medium border-b border-ash/30">&#128293; Le Concept</button>
+      <button onclick="showPage('carte');closeMob()"   class="text-left text-cream/90 py-2 text-sm font-medium border-b border-ash/30">&#129385; Notre Carte</button>
+      <button onclick="showPage('galerie');closeMob()" class="text-left text-cream/90 py-2 text-sm font-medium border-b border-ash/30">&#128247; Galerie</button>
+      <button onclick="showPage('avis');closeMob()"    class="text-left text-cream/90 py-2 text-sm font-medium border-b border-ash/30">&#11088; Avis</button>
+      <button onclick="showPage('contact');closeMob()" class="text-left text-cream/90 py-2 text-sm font-medium">&#128205; Contact</button>
+      <a href="tel:0745231500" class="mt-3 bg-fire text-white text-center py-3 rounded-full font-bold text-sm">&#128222; Reserver - 07 45 23 15 00</a>
+    </div>
+  </div>
+</header>
+<!-- PAGE ACCUEIL -->
+<div id="page-accueil" class="page active">
+  <section class="hero-bg min-h-screen flex items-center justify-center text-center px-4">
+    <div class="max-w-3xl mx-auto">
+      <span class="badge-feu mb-6 inline-flex">&#128293; Restaurant Turc &middot; Louviers</span>
+      <h1 class="font-title font-black text-4xl md:text-6xl lg:text-7xl text-white leading-tight mb-6">
+        Le gout du feu de bois,<br/><em class="text-gold not-italic">la generosite a la turque.</em>
+      </h1>
+      <p class="text-cream/85 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-10">
+        Grillades au feu de bois, viandes fondantes, frites maison et specialites preparees sur place - a savourer en salle ou a emporter, au <strong class="text-gold">15 Bd de Crosne, Louviers</strong>.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="tel:0745231500" class="bg-fire hover:bg-red-700 text-white font-bold px-8 py-4 rounded-full text-base transition-all shadow-xl shadow-fire/40 flex items-center justify-center gap-2">
+          &#128222; Reserver / Appeler
+        </a>
+        <button onclick="showPage('carte')" class="border-2 border-gold text-gold hover:bg-gold hover:text-charcoal font-bold px-8 py-4 rounded-full text-base transition-all flex items-center justify-center gap-2">
+          &#129385; Voir la carte
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ash py-12">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div><div class="text-3xl mb-2">&#128293;</div><h3 class="font-title font-bold text-gold text-sm mb-1">Feu de bois</h3><p class="text-cream/60 text-xs">Cuisson authentique sur braise vive</p></div>
+      <div><div class="text-3xl mb-2">&#127968;</div><h3 class="font-title font-bold text-gold text-sm mb-1">Tout maison</h3><p class="text-cream/60 text-xs">Frites, sauces et marinades preparees sur place</p></div>
+      <div><div class="text-3xl mb-2">&#129385;</div><h3 class="font-title font-bold text-gold text-sm mb-1">Genereux</h3><p class="text-cream/60 text-xs">On ne lesine jamais sur la quantite</p></div>
+      <div><div class="text-3xl mb-2">&#129309;</div><h3 class="font-title font-bold text-gold text-sm mb-1">Convivial</h3><p class="text-cream/60 text-xs">Ambiance familiale, equipe souriante</p></div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-charcoal">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <div>
+        <span class="badge-feu mb-4 inline-flex">Notre histoire</span>
+        <h2 class="font-title text-3xl md:text-4xl text-white mb-6 leading-snug">Une cuisine d'authenticite,<br/><span class="text-gold">un feu qui ne s'eteint jamais</span></h2>
+        <p class="text-cream/80 leading-relaxed mb-5">Situe au coeur de Louviers, <strong class="text-gold">Grill House au feu de bois</strong> vous accueille dans une ambiance chaleureuse et conviviale pour savourer des grillades turques cuites directement sur braise de bois.</p>
+        <p class="text-cream/80 leading-relaxed mb-5">Assiettes genereuses, viandes fondantes, frites maison et specialites faites maison : ici, on vient pour bien manger et passer un bon moment en famille ou entre amis.</p>
+        <p class="text-cream/80 leading-relaxed mb-8">Pour ceux qui preferent deguster chez eux, la formule <strong class="text-gold">a emporter</strong> est disponible a tout moment.</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button onclick="showPage('concept')" class="bg-wood hover:bg-ember text-cream font-semibold px-6 py-3 rounded-full text-sm transition-all">En savoir plus &rarr;</button>
+          <a href="tel:0745231500" class="bg-fire hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-full text-sm transition-all text-center">&#128222; 07 45 23 15 00</a>
+        </div>
+      </div>
+      <div class="relative">
+        <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=900&auto=format&fit=crop" alt="Assiette de grillades turques" class="w-full rounded-2xl shadow-2xl object-cover h-80 md:h-[480px]"/>
+        <div class="absolute -bottom-5 -left-5 bg-fire text-white rounded-xl px-5 py-4 shadow-xl shadow-fire/30">
+          <p class="font-title font-bold text-lg leading-tight">&#11088; 4.8/5</p>
+          <p class="text-xs text-white/80 mt-0.5">Avis clients verifies</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-wooddark">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <span class="badge-feu mb-3 inline-flex">Nos incontournables</span>
+        <h2 class="font-title text-2xl md:text-3xl text-white">Les plats dont nos clients raffolent</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card-hover bg-ash rounded-2xl overflow-hidden border border-ash/60">
+          <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=600&auto=format&fit=crop" alt="Assiette mixte" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"/></div>
+          <div class="p-5"><div class="flex justify-between items-center mb-2"><h3 class="font-title font-bold text-white text-base">Assiette Mixte &#11088;</h3><span class="text-gold font-bold">18,90 &euro;</span></div><p class="text-cream/60 text-xs leading-relaxed">Adana, brochette agneau, poulet, kofta, riz pilaf, frites maison, salades.</p><button onclick="showPage('carte')" class="mt-4 text-gold text-xs font-semibold hover:underline">Voir la carte &rarr;</button></div>
+        </div>
+        <div class="card-hover bg-ash rounded-2xl overflow-hidden border border-ash/60">
+          <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&auto=format&fit=crop" alt="Adana kebab" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"/></div>
+          <div class="p-5"><div class="flex justify-between items-center mb-2"><h3 class="font-title font-bold text-white text-base">Adana Kebab &#128293;</h3><span class="text-gold font-bold">13,90 &euro;</span></div><p class="text-cream/60 text-xs leading-relaxed">Viande hachee epiceee fa&ccedil;onnee a la main, grillee sur braise, avec riz et salade maison.</p><button onclick="showPage('carte')" class="mt-4 text-gold text-xs font-semibold hover:underline">Voir la carte &rarr;</button></div>
+        </div>
+        <div class="card-hover bg-ash rounded-2xl overflow-hidden border border-ash/60">
+          <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1558030006-450675393462?w=600&auto=format&fit=crop" alt="Doner assiette" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"/></div>
+          <div class="p-5"><div class="flex justify-between items-center mb-2"><h3 class="font-title font-bold text-white text-base">Doner Assiette</h3><span class="text-gold font-bold">11,50 &euro;</span></div><p class="text-cream/60 text-xs leading-relaxed">Viande rotie a la broche, frites maison, salade, sauce blanche preparee sur place.</p><button onclick="showPage('carte')" class="mt-4 text-gold text-xs font-semibold hover:underline">Voir la carte &rarr;</button></div>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <button onclick="showPage('carte')" class="bg-fire hover:bg-red-700 text-white font-bold px-8 py-3 rounded-full transition-all shadow-lg">&#127869; Decouvrir toute la carte</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-charcoal">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="badge-feu mb-3 inline-flex">Ce qu'ils disent</span>
+      <h2 class="font-title text-2xl md:text-3xl text-white mb-2">Nos clients adorent</h2>
+      <div class="flex justify-center gap-1 mb-8 text-gold text-xl">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="review-border bg-ash/30 rounded-xl p-5 text-left"><p class="text-gold text-sm mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p class="text-cream/80 text-sm italic leading-relaxed">L'assiette mixte est enormement genereuse, la viande fondante. Un rapport qualite-prix exceptionnel a Louviers !</p><p class="text-cream/50 text-xs mt-3 font-medium">- Sebastien M.</p></div>
+        <div class="review-border bg-ash/30 rounded-xl p-5 text-left"><p class="text-gold text-sm mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p class="text-cream/80 text-sm italic leading-relaxed">On y est alles en famille, tout le monde a adore. L'adana est succulent, la sauce blanche est top.</p><p class="text-cream/50 text-xs mt-3 font-medium">- Nadia B.</p></div>
+        <div class="review-border bg-ash/30 rounded-xl p-5 text-left"><p class="text-gold text-sm mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p class="text-cream/80 text-sm italic leading-relaxed">Le meilleur resto turc de la region, sans aucun doute. Gout fume inimitable, equipe au top.</p><p class="text-cream/50 text-xs mt-3 font-medium">- Thomas K.</p></div>
+      </div>
+      <button onclick="showPage('avis')" class="mt-8 border border-gold text-gold hover:bg-gold hover:text-charcoal font-semibold px-6 py-3 rounded-full text-sm transition-all">Lire tous les avis &rarr;</button>
+    </div>
+  </section>
+</div>
+<!-- PAGE CONCEPT -->
+<div id="page-concept" class="page">
+  <div class="bg-wooddark py-16 text-center border-b border-ash/30">
+    <span class="badge-feu mb-4 inline-flex">Notre ADN</span>
+    <h1 class="font-title font-black text-4xl md:text-5xl text-white">Le Concept Grill House</h1>
+    <p class="text-cream/70 mt-4 max-w-xl mx-auto text-sm">Comprendre ce qui nous rend uniques a Louviers</p>
+  </div>
+  <section class="py-20 bg-charcoal">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center mb-20">
+        <div class="gal-img h-72 md:h-96"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=900&auto=format&fit=crop" alt="Cuisson au feu de bois"/></div>
+        <div>
+          <span class="badge-feu mb-4 inline-flex">Technique ancestrale</span>
+          <h2 class="font-title text-3xl text-white mb-5">La cuisson au feu de bois : notre signature</h2>
+          <p class="text-cream/80 leading-relaxed mb-4">Le feu de bois n'est pas qu'une methode de cuisson - c'est une philosophie. Chez Grill House, chaque piece de viande est deposee directement sur la braise ardente, laissant les flammes saisir les sucs, carameliser les fibres et deposer ce gout fume inimitable qu'aucun gril electrique ne peut imiter.</p>
+          <p class="text-cream/80 leading-relaxed">Agneau, poulet, adana, kofta, entrecote - toutes nos grillades passent par le feu. C'est long, c'est minutieux, mais c'est ce qui fait la difference dans l'assiette.</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center mb-20">
+        <div class="lg:order-2 gal-img h-72 md:h-96"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&auto=format&fit=crop" alt="Preparation fait maison"/></div>
+        <div class="lg:order-1">
+          <span class="badge-feu mb-4 inline-flex">Artisanat culinaire</span>
+          <h2 class="font-title text-3xl text-white mb-5">Tout est fait maison, sans exception</h2>
+          <p class="text-cream/80 leading-relaxed mb-4">Les frites sont taillees et cuites sur place. La sauce blanche est preparee chaque matin. Les marinades mijotent des heures avant d'accueillir les viandes. Les specialites - lahmacun, pide, mezze - sont confectionnees a la commande, sans compromis.</p>
+          <p class="text-cream/80 leading-relaxed">Ici, rien n'est rechauffe, rien n'est industriel. Chaque assiette est le reflet d'un travail honnete et d'une cuisine preparee avec fierte.</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center mb-16">
+        <div class="gal-img h-72 md:h-96"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&auto=format&fit=crop" alt="Ambiance salle restaurant"/></div>
+        <div>
+          <span class="badge-feu mb-4 inline-flex">L'ame du restaurant</span>
+          <h2 class="font-title text-3xl text-white mb-5">Une adresse locale, une ambiance authentique</h2>
+          <p class="text-cream/80 leading-relaxed mb-4">Grill House, c'est avant tout une equipe passionnee qui aime recevoir. Familles, amis, collegues du midi - tout le monde est le bienvenu dans notre salle chaleureuse.</p>
+          <p class="text-cream/80 leading-relaxed">Idealement situe au <strong class="text-gold">15 Boulevard de Crosne a Louviers</strong>, nous sommes facilement accessibles depuis tout le centre-ville. Sur place ou a emporter - c'est vous qui choisissez.</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-ash/30 border border-wood/20 rounded-xl p-5 text-center"><div class="text-3xl mb-3">&#128293;</div><h4 class="font-title font-bold text-gold text-xs uppercase tracking-wide mb-2">Feu de bois</h4><p class="text-cream/60 text-xs">Cuisson sur braise, gout fume authentique</p></div>
+        <div class="bg-ash/30 border border-wood/20 rounded-xl p-5 text-center"><div class="text-3xl mb-3">&#127968;</div><h4 class="font-title font-bold text-gold text-xs uppercase tracking-wide mb-2">Fait maison</h4><p class="text-cream/60 text-xs">Frites, sauces, mezze prepares sur place</p></div>
+        <div class="bg-ash/30 border border-wood/20 rounded-xl p-5 text-center"><div class="text-3xl mb-3">&#129385;</div><h4 class="font-title font-bold text-gold text-xs uppercase tracking-wide mb-2">Genereux</h4><p class="text-cream/60 text-xs">Assiettes copieuses, excellent rapport qualite-prix</p></div>
+        <div class="bg-ash/30 border border-wood/20 rounded-xl p-5 text-center"><div class="text-3xl mb-3">&#127775;</div><h4 class="font-title font-bold text-gold text-xs uppercase tracking-wide mb-2">Local</h4><p class="text-cream/60 text-xs">Ancre a Louviers, pour les Louvierois</p></div>
+      </div>
+      <div class="text-center mt-14">
+        <a href="tel:0745231500" class="inline-block bg-fire hover:bg-red-700 text-white font-bold px-10 py-4 rounded-full text-base transition-all shadow-xl shadow-fire/30">&#128222; Reserver une table - 07 45 23 15 00</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE CARTE -->
+<div id="page-carte" class="page">
+  <div class="bg-wooddark py-16 text-center border-b border-ash/30">
+    <span class="badge-feu mb-4 inline-flex">Tout fait maison</span>
+    <h1 class="font-title font-black text-4xl md:text-5xl text-white">Notre Carte</h1>
+    <p class="text-cream/70 mt-4 max-w-xl mx-auto text-sm">&#127968; = Preparation artisanale sur place &nbsp;&middot;&nbsp; &#11088; = Coup de coeur de la maison</p>
+  </div>
+  <section class="py-12 bg-charcoal">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-wrap gap-2 justify-center mb-10 border-b border-ash/40 pb-4">
+        <button onclick="switchMenuCat('entrees')"  id="mcat-entrees"  class="menu-tab-btn active text-sm font-semibold px-4 py-2 text-cream/80">&#129387; Entrees</button>
+        <button onclick="switchMenuCat('grillades')" id="mcat-grillades" class="menu-tab-btn text-sm font-semibold px-4 py-2 text-cream/80">&#128293; Grillades</button>
+        <button onclick="switchMenuCat('pains')"    id="mcat-pains"    class="menu-tab-btn text-sm font-semibold px-4 py-2 text-cream/80">&#129394; Pains &amp; Galettes</button>
+        <button onclick="switchMenuCat('burgers')"  id="mcat-burgers"  class="menu-tab-btn text-sm font-semibold px-4 py-2 text-cream/80">&#127828; Burgers</button>
+        <button onclick="switchMenuCat('desserts')" id="mcat-desserts" class="menu-tab-btn text-sm font-semibold px-4 py-2 text-cream/80">&#127855; Desserts</button>
+      </div>
+      <!-- Entrees -->
+      <div id="menucontent-entrees" class="menu-cat active grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Soupe de lentilles &#127968;</h4><span class="text-gold font-bold text-sm">4,50 &euro;</span></div><p class="text-cream/60 text-xs">Veloutee, epicee avec douceur, servie avec croutons et citron</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Salade turque &#127968;</h4><span class="text-gold font-bold text-sm">6,00 &euro;</span></div><p class="text-cream/60 text-xs">Tomates, concombres, poivrons, oignons, herbes fraiches, huile d'olive</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Haydari (labneh a l'ail)</h4><span class="text-gold font-bold text-sm">5,00 &euro;</span></div><p class="text-cream/60 text-xs">Fromage blanc epais aux herbes, pain pita chaud</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Ezme &#127968;</h4><span class="text-gold font-bold text-sm">5,00 &euro;</span></div><p class="text-cream/60 text-xs">Salade epicee de tomates et poivrons, fraiche et relevee</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Falafel (4 pieces)</h4><span class="text-gold font-bold text-sm">5,50 &euro;</span></div><p class="text-cream/60 text-xs">Boulettes de pois chiches aux epices, croustillantes et dorees</p></div>
+        <div class="card-hover bg-fire/10 border border-fire/30 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Plateau mezze (2 pers.) &#11088; &#127968;</h4><span class="text-gold font-bold text-sm">12,00 &euro;</span></div><p class="text-cream/60 text-xs">Selection de 4 entrees maison + pain au four - ideal pour partager</p></div>
+      </div>
+      <!-- Grillades -->
+      <div id="menucontent-grillades" class="menu-cat grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="card-hover bg-fire/10 border border-fire/30 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Assiette mixte &#127968; &#11088;</h4><span class="text-gold font-bold text-sm">18,90 &euro;</span></div><p class="text-cream/60 text-xs">Adana, brochette agneau, poulet, kofta, riz pilaf, frites maison, salades</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Adana kebab &#128293;</h4><span class="text-gold font-bold text-sm">13,90 &euro;</span></div><p class="text-cream/60 text-xs">Viande hachee epicee fa&ccedil;onnee main, grillee sur braise, riz et salade</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Brochette d'agneau &#128293;</h4><span class="text-gold font-bold text-sm">14,90 &euro;</span></div><p class="text-cream/60 text-xs">Pieces marinees aux herbes, cuites feu de bois, frites maison</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Brochette de poulet</h4><span class="text-gold font-bold text-sm">12,50 &euro;</span></div><p class="text-cream/60 text-xs">Filets marines grilles, sauce blanche maison, accompagnement au choix</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Entrecote grillee &#128293;</h4><span class="text-gold font-bold text-sm">16,90 &euro;</span></div><p class="text-cream/60 text-xs">Belle piece de boeuf au feu de bois, frites maison et sauce maison</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Kofta kebab</h4><span class="text-gold font-bold text-sm">12,90 &euro;</span></div><p class="text-cream/60 text-xs">Boulettes allongees agneau-boeuf epicees, grillees a la flamme</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Ailes de poulet grillees</h4><span class="text-gold font-bold text-sm">11,90 &euro;</span></div><p class="text-cream/60 text-xs">Marinees au paprika, croustillantes au feu de bois</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Doner kebab assiette</h4><span class="text-gold font-bold text-sm">11,50 &euro;</span></div><p class="text-cream/60 text-xs">Viande rotie a la broche, frites maison, salade, sauce blanche</p></div>
+        <div class="card-hover bg-fire/10 border border-fire/30 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Assiette duo (2 pers.) &#11088; &#127968;</h4><span class="text-gold font-bold text-sm">32,00 &euro;</span></div><p class="text-cream/60 text-xs">Variete complete de grillades pour 2, accompagnements inclus</p></div>
+      </div>
+      <!-- Pains -->
+      <div id="menucontent-pains" class="menu-cat grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Lahmacun &#127968;</h4><span class="text-gold font-bold text-sm">5,00 &euro;</span></div><p class="text-cream/60 text-xs">Fine galette viande epicee, legumes frais et citron</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Pide au fromage &#127968;</h4><span class="text-gold font-bold text-sm">7,50 &euro;</span></div><p class="text-cream/60 text-xs">Bateau de pain croustillant garni de fromage fondu au four</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Durum adana</h4><span class="text-gold font-bold text-sm">9,50 &euro;</span></div><p class="text-cream/60 text-xs">Galette lavash, adana grille, legumes frais et sauce maison</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Galette kofta</h4><span class="text-gold font-bold text-sm">9,00 &euro;</span></div><p class="text-cream/60 text-xs">Kofta grille enroule dans galette de ble, legumes marines</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Sandwich doner &#127968;</h4><span class="text-gold font-bold text-sm">7,90 &euro;</span></div><p class="text-cream/60 text-xs">Baguette artisanale, doner de veau/poulet, crudites, sauce maison</p></div>
+      </div>
+      <!-- Burgers -->
+      <div id="menucontent-burgers" class="menu-cat grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="card-hover bg-fire/10 border border-fire/30 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Burger Grill House &#127968; &#11088;</h4><span class="text-gold font-bold text-sm">11,00 &euro;</span></div><p class="text-cream/60 text-xs">Steak hache maison grille, cheddar fondu, oignons caramelises, sauce secrete, frites maison</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Burger Adana &#128293; &#127968;</h4><span class="text-gold font-bold text-sm">12,00 &euro;</span></div><p class="text-cream/60 text-xs">Viande adana epicee en burger, fromage fondu, legumes frais, sauce piquante maison</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Burger Poulet grille</h4><span class="text-gold font-bold text-sm">10,50 &euro;</span></div><p class="text-cream/60 text-xs">Filet de poulet grille, coleslaw maison, sauce blanche, frites</p></div>
+      </div>
+      <!-- Desserts -->
+      <div id="menucontent-desserts" class="menu-cat grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Baklava (3 pieces) &#127968; &#11088;</h4><span class="text-gold font-bold text-sm">5,00 &euro;</span></div><p class="text-cream/60 text-xs">Feuillets croustillants pistaches &amp; noix, nappes de sirop de miel</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Kunefe</h4><span class="text-gold font-bold text-sm">6,50 &euro;</span></div><p class="text-cream/60 text-xs">Dessert chaud au fromage et cheveux d'ange, sirop fleur d'oranger et pistache</p></div>
+        <div class="card-hover bg-ash/20 border border-wood/20 rounded-xl p-5"><div class="flex justify-between mb-2"><h4 class="font-semibold text-white text-sm">Muhallebi (creme turque)</h4><span class="text-gold font-bold text-sm">4,50 &euro;</span></div><p class="text-cream/60 text-xs">Creme de riz parfumee a l'eau de rose, legere et delicate</p></div>
+      </div>
+      <div class="text-center mt-12 p-6 bg-fire/10 border border-fire/20 rounded-2xl">
+        <p class="text-cream/70 text-sm mb-4">Formules midi disponibles du lundi au vendredi &middot; Commande a emporter disponible</p>
+        <a href="tel:0745231500" class="inline-block bg-fire hover:bg-red-700 text-white font-bold px-8 py-3 rounded-full transition-all shadow-lg">&#128222; Commander maintenant - 07 45 23 15 00</a>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- PAGE GALERIE -->
+<div id="page-galerie" class="page">
+  <div class="bg-wooddark py-16 text-center border-b border-ash/30">
+    <span class="badge-feu mb-4 inline-flex">En images</span>
+    <h1 class="font-title font-black text-4xl md:text-5xl text-white">La table, le feu, les saveurs</h1>
+    <p class="text-cream/70 mt-4 max-w-xl mx-auto text-sm">Grillades dorees, assiettes genereuses, ambiance chaleureuse</p>
+  </div>
+  <section class="py-16 bg-charcoal">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="gal-img h-56"><img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=800&auto=format&fit=crop" alt="Assiette mixte"/></div>
+        <div class="gal-img h-56"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&auto=format&fit=crop" alt="Adana grille"/></div>
+        <div class="gal-img h-56"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&auto=format&fit=crop" alt="Brochettes sur braise"/></div>
+        <div class="gal-img col-span-2 h-72"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&auto=format&fit=crop" alt="Grillade au feu de bois"/></div>
+        <div class="gal-img h-72"><img src="https://images.unsplash.com/photo-1558030006-450675393462?w=800&auto=format&fit=crop" alt="Kebab maison"/></div>
+        <div class="gal-img h-56"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&auto=format&fit=crop" alt="Salle du restaurant"/></div>
+        <div class="gal-img h-56"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop" alt="Assiette coloree"/></div>
+        <div class="gal-img h-56"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&auto=format&fit=crop" alt="Grillade viande"/></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE AVIS -->
+<div id="page-avis" class="page">
+  <div class="bg-wooddark py-16 text-center border-b border-ash/30">
+    <span class="badge-feu mb-4 inline-flex">Temoignages</span>
+    <h1 class="font-title font-black text-4xl md:text-5xl text-white">Nos clients en parlent</h1>
+    <div class="flex justify-center gap-1 mt-4 text-gold text-2xl">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    <p class="text-cream/60 mt-2 text-sm">Note moyenne 4,8/5 &middot; Avis clients verifies</p>
+  </div>
+  <section class="py-16 bg-charcoal">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="review-border bg-ash/20 rounded-xl p-6"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 bg-fire rounded-full flex items-center justify-center font-bold text-white text-sm">SM</div><div><p class="font-semibold text-white text-sm">Sebastien M.</p><p class="text-gold text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</p></div></div><p class="text-cream/80 text-sm leading-relaxed italic">Une assiette mixte XXL, genereuse a souhait ! La viande est tendre et bien grillee, les frites maison sont parfaites. Service rapide et souriant. Je recommande sans hesiter.</p><p class="text-cream/40 text-xs mt-3">Il y a 2 semaines</p></div>
+        <div class="review-border bg-ash/20 rounded-xl p-6"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 bg-wood rounded-full flex items-center justify-center font-bold text-white text-sm">NB</div><div><p class="font-semibold text-white text-sm">Nadia B.</p><p class="text-gold text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</p></div></div><p class="text-cream/80 text-sm leading-relaxed italic">Vraiment excellent ! On y est alles en famille et tout le monde a adore. L'adana est succulent, la sauce blanche est trop bonne. On revient souvent - rapport qualite-prix imbattable.</p><p class="text-cream/40 text-xs mt-3">Il y a 1 mois</p></div>
+        <div class="review-border bg-ash/20 rounded-xl p-6"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 bg-gold rounded-full flex items-center justify-center font-bold text-charcoal text-sm">TK</div><div><p class="font-semibold text-white text-sm">Thomas K.</p><p class="text-gold text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</p></div></div><p class="text-cream/80 text-sm leading-relaxed italic">Le meilleur resto turc de la region, sans aucun doute. Les portions sont enormes, c'est fait maison, et l'accueil est chaleureux. Le doner assiette avec frites maison, un regal absolu.</p><p class="text-cream/40 text-xs mt-3">Il y a 3 semaines</p></div>
+        <div class="review-border bg-ash/20 rounded-xl p-6"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 bg-ember rounded-full flex items-center justify-center font-bold text-white text-sm">LF</div><div><p class="font-semibold text-white text-sm">Laura F.</p><p class="text-gold text-xs">&#9733;&#9733;&#9733;&#9733;&#9734;</p></div></div><p class="text-cream/80 text-sm leading-relaxed italic">Super convivial, on se sent vraiment bien accueillis. Les brochettes d'agneau sont delicieuses, parfaitement grillees. Ideal pour le midi au travail ou le diner en famille.</p><p class="text-cream/40 text-xs mt-3">Il y a 5 semaines</p></div>
+        <div class="review-border bg-ash/20 rounded-xl p-6"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 bg-fire rounded-full flex items-center justify-center font-bold text-white text-sm">KA</div><div><p class="font-semibold text-white text-sm">Karim A.</p><p class="text-gold text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</p></div></div><p class="text-cream/80 text-sm leading-relaxed italic">L'assiette duo pour deux, c'est le top. On a tout teste : kofta, adana, poulet, agneau - tout etait parfait. Le gout fume du feu de bois fait vraiment la difference.</p><p class="text-cream/40 text-xs mt-3">Il y a 2 mois</p></div>
+        <div class="review-border bg-ash/20 rounded-xl p-6"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 bg-wood rounded-full flex items-center justify-center font-bold text-white text-sm">MD</div><div><p class="font-semibold text-white text-sm">Marie-Christine D.</p><p class="text-gold text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</p></div></div><p class="text-cream/80 text-sm leading-relaxed italic">Je ne pensais pas aimer la cuisine turque autant ! L'equipe a ete tres patiente. Les mezze en entree sont frais et savoureux, le baklava pour finir etait une merveille.</p><p class="text-cream/40 text-xs mt-3">Il y a 6 semaines</p></div>
+      </div>
+      <div class="text-center mt-12 bg-ash/20 border border-wood/20 rounded-2xl p-8">
+        <h3 class="font-title text-xl text-white mb-3">Vous avez dine chez nous ?</h3>
+        <p class="text-cream/70 text-sm mb-5">Partagez votre experience sur Google Maps - ca nous aide enormement !</p>
+        <a href="https://maps.google.com/?q=15+Boulevard+de+Crosne+27400+Louviers" target="_blank" class="inline-block bg-gold hover:bg-yellow-500 text-charcoal font-bold px-7 py-3 rounded-full text-sm transition-all">&#11088; Laisser un avis Google</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE CONTACT -->
+<div id="page-contact" class="page">
+  <div class="bg-wooddark py-16 text-center border-b border-ash/30">
+    <span class="badge-feu mb-4 inline-flex">Nous trouver</span>
+    <h1 class="font-title font-black text-4xl md:text-5xl text-white">Venez nous rendre visite</h1>
+    <p class="text-cream/70 mt-4 max-w-xl mx-auto text-sm">A deux pas du centre de Louviers. <span class="text-gold font-semibold">Pensez a reserver le week-end</span> !</p>
+  </div>
+  <section class="py-16 bg-charcoal">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div class="space-y-5">
+        <div class="flex items-start gap-4 bg-ash/20 rounded-xl p-5"><div class="text-2xl">&#128205;</div><div><h3 class="font-semibold text-gold mb-1">Adresse</h3><p class="text-cream/80 text-sm">15 Boulevard de Crosne<br/>27400 Louviers, Normandie</p><a href="https://maps.google.com/?q=15+Boulevard+de+Crosne+27400+Louviers" target="_blank" class="text-gold text-xs underline mt-1 inline-block hover:text-fire">Ouvrir dans Google Maps &rarr;</a></div></div>
+        <div class="flex items-start gap-4 bg-ash/20 rounded-xl p-5"><div class="text-2xl">&#128222;</div><div><h3 class="font-semibold text-gold mb-1">Telephone</h3><a href="tel:0745231500" class="text-white text-xl font-bold hover:text-gold transition-colors">07 45 23 15 00</a><p class="text-cream/60 text-xs mt-1">Tapez pour appeler directement</p></div></div>
+        <div class="flex items-start gap-4 bg-ash/20 rounded-xl p-5"><div class="text-2xl">&#128336;</div><div><h3 class="font-semibold text-gold mb-2">Horaires</h3><div class="space-y-1.5 text-sm text-cream/80"><div class="flex justify-between gap-8"><span>Lundi - Vendredi</span><span class="text-cream/60">11h30-14h30 &middot; 18h-22h30</span></div><div class="flex justify-between gap-8"><span>Samedi</span><span class="text-cream/60">11h30-23h00</span></div><div class="flex justify-between gap-8"><span>Dimanche</span><span class="text-cream/60">12h00-22h00</span></div></div><p class="text-gold/70 text-xs mt-2 italic">* Horaires indicatifs - appelez pour confirmer</p></div></div>
+        <div class="flex items-start gap-4 bg-fire/10 border border-fire/30 rounded-xl p-5"><div class="text-2xl">&#128717;</div><div><h3 class="font-semibold text-gold mb-1">Sur place &amp; a emporter</h3><p class="text-cream/80 text-sm">Profitez de nos tables en salle ou passez commande a emporter. Appelez a l'avance pour eviter l'attente !</p></div></div>
+        <a href="tel:0745231500" class="flex items-center justify-center gap-2 w-full bg-fire hover:bg-red-700 text-white font-bold py-4 rounded-full text-base transition-all shadow-xl shadow-fire/30">&#128222; Reserver maintenant - 07 45 23 15 00</a>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-wood/30 shadow-xl" style="min-height:420px">
+        <iframe title="Grill House Louviers" src="https://maps.google.com/maps?q=15+Boulevard+de+Crosne,+27400+Louviers&output=embed&z=15" width="100%" height="100%" style="border:0;min-height:420px" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-wooddark border-t border-ash/40 py-12">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-8">
+      <div>
+        <div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 bg-fire rounded-full flex items-center justify-center text-lg">&#128293;</div><div><span class="font-title font-black text-white text-sm block">GRILL HOUSE</span><span class="text-gold text-xs tracking-widest uppercase">au feu de bois</span></div></div>
+        <p class="text-cream/60 text-sm leading-relaxed">Grillades turques au feu de bois, cuisine genereuse et conviviale a Louviers. Fait maison, chaque jour, avec passion.</p>
+        <div class="flex gap-3 mt-5">
+          <a href="#" class="w-8 h-8 bg-ash hover:bg-fire rounded-full flex items-center justify-center text-xs font-bold transition-colors">f</a>
+          <a href="#" class="w-8 h-8 bg-ash hover:bg-fire rounded-full flex items-center justify-center text-xs font-bold transition-colors">IG</a>
+          <a href="#" class="w-8 h-8 bg-ash hover:bg-fire rounded-full flex items-center justify-center text-xs font-bold transition-colors">G</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-title font-bold text-gold text-xs uppercase tracking-widest mb-4">Pages</h4>
+        <ul class="space-y-2 text-sm text-cream/70">
+          <li><button onclick="showPage('accueil')" class="hover:text-gold transition-colors">Accueil</button></li>
+          <li><button onclick="showPage('concept')" class="hover:text-gold transition-colors">Le Concept</button></li>
+          <li><button onclick="showPage('carte')"   class="hover:text-gold transition-colors">Notre Carte</button></li>
+          <li><button onclick="showPage('galerie')" class="hover:text-gold transition-colors">Galerie</button></li>
+          <li><button onclick="showPage('avis')"    class="hover:text-gold transition-colors">Avis Clients</button></li>
+          <li><button onclick="showPage('contact')" class="hover:text-gold transition-colors">Contact</button></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-title font-bold text-gold text-xs uppercase tracking-widest mb-4">Nous trouver</h4>
+        <div class="space-y-2 text-sm text-cream/70">
+          <p>&#128205; 15 Boulevard de Crosne<br/>27400 Louviers</p>
+          <p>&#128222; <a href="tel:0745231500" class="hover:text-gold transition-colors">07 45 23 15 00</a></p>
+          <p>&#128336; Ouvert tous les jours</p>
+          <a href="https://maps.google.com/?q=15+Boulevard+de+Crosne+27400+Louviers" target="_blank" class="text-gold text-xs underline hover:text-fire">Itineraire Google Maps &rarr;</a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-ash/30 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-cream/40">
+      <p>&copy; 2025 Grill House au feu de bois - Tous droits reserves</p>
+      <p>Site realise par <a href="https://webivo.fr" class="text-gold/70 hover:text-gold transition-colors">Webivo</a> - Agence de creation de sites vitrines premium</p>
+    </div>
+  </div>
+</footer>
+
+<div id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</div>
+
+<script>
+const pages=["accueil","concept","carte","galerie","avis","contact"];
+function showPage(id){
+  pages.forEach(p=>{
+    document.getElementById("page-"+p).classList.remove("active");
+    const n=document.getElementById("nav-"+p);
+    if(n){n.classList.remove("active");n.className=n.className.replace("text-cream ","text-cream/80 ");}
+  });
+  document.getElementById("page-"+id).classList.add("active");
+  const nav=document.getElementById("nav-"+id);
+  if(nav){nav.classList.add("active");}
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.getElementById("mbBtn").addEventListener("click",()=>{document.getElementById("mobileMenu").classList.toggle("hidden");});
+function closeMob(){document.getElementById("mobileMenu").classList.add("hidden");}
+const menuCats=["entrees","grillades","pains","burgers","desserts"];
+function switchMenuCat(cat){
+  menuCats.forEach(c=>{
+    document.getElementById("menucontent-"+c).classList.remove("active");
+    const b=document.getElementById("mcat-"+c);
+    if(b)b.classList.remove("active");
+  });
+  document.getElementById("menucontent-"+cat).classList.add("active");
+  const btn=document.getElementById("mcat-"+cat);
+  if(btn)btn.classList.add("active");
+}
+const st=document.getElementById("scrollTop");
+window.addEventListener("scroll",()=>{st.classList.toggle("show",window.scrollY>400);});
+</script>
+</body>
+</html>
